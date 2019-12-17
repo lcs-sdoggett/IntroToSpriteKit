@@ -148,6 +148,31 @@ hero.run(actionWalkAndMoveFiveTimes)
 
 // Exercise: Write your code below
 
+let rocket = SKSpriteNode(imageNamed: "rocket")
+rocket.position = CGPoint(x: scene.size.width / 1.2, y: scene.size.height / 4)
+//rocket.physicsBody = SKPhysicsBody(texture: rocket.texture!,
+                                   //alphaThreshold: 0.5,
+                                   //size: rocket.size)
+scene.addChild(rocket)
+
+var lauchTexture: [SKTexture] = []
+
+// Now add the two images we need in the array
+lauchTexture.append(SKTexture(imageNamed: "rocket_0"))
+lauchTexture.append(SKTexture(imageNamed: "rocket_1"))
+lauchTexture.append(SKTexture(imageNamed: "rocket_2"))
+lauchTexture.append(SKTexture(imageNamed: "rocket_3"))
+lauchTexture.append(SKTexture(imageNamed: "rocket_4"))
+lauchTexture.append(SKTexture(imageNamed: "rocket_5"))
+
+let launchAnimation = SKAction.animate(with: lauchTexture, timePerFrame: 0.2, resize: true, restore: false)
+let moveUp = SKAction.move(by: 200.00, duration: 0.4)
+let wait = SKAction.wait(forDuration: 1)
+let blastoff = SKAction.sequence([launchAnimation, wait, moveUp])
+
+
+rocket.run(blastoff)
+
 /*:
  
  [Previous: Working With Text](@previous) | Page 8 | [Next: Particle Effects](@next)
